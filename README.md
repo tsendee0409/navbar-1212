@@ -18,6 +18,7 @@ cd navbar-1212
 ```
 
 ### Run
+Run the below command in vscode terminal or cmd.
 ```bash
 powershell -file init.ps1
 ```

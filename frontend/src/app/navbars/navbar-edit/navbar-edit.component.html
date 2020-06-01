@@ -1,0 +1,117 @@
+<h3 class="title is-4" *ngIf="editMode">
+    <span class="icon">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </span>
+    Меню засах
+</h3>
+
+<h3 class="title is-4" *ngIf="!editMode">
+    <span class="icon">
+        <fa-icon [icon]="faPlus"></fa-icon>
+    </span>
+    Шинэ меню
+</h3>
+
+<form [formGroup]="navbarForm" (ngSubmit)="onSubmit()">
+
+    <input class="input" type="hidden" formControlName="id">
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Нэр</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-rounded" type="text" placeholder="Менюний нэр" id="name"
+                        formControlName="name">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="subtitle">
+        <span class="icon">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </span>
+        Дэд меню
+    </h2>
+
+    <div formArrayName="navitems" [sortablejs]="navitemsControls" [sortablejsOptions]="{ animation: 150 }">
+        <div class="field is-grouped navitem" *ngFor="let navitemsCtrl of navitemsControls; let i = index"
+            [formGroupName]="i" [ngStyle]="{marginLeft: getStyle(i)}">
+            <input class="input" type="hidden" formControlName="id">
+            <input class="input" type="hidden" formControlName="parent">
+            <input class="input" type="hidden" formControlName="sort">
+            <input class="input" type="hidden" formControlName="level">
+            <div class="control">
+                <label class="checkbox is-size-7">
+                    <input type="checkbox" formControlName="published" (change)="onSetDisabled(i)">
+                </label>
+            </div>
+            <div class="control">
+                <input class="input is-small" type="text" placeholder="Менюний нэр" formControlName="name">
+            </div>
+            <div class="control">
+                <label class="checkbox is-size-7">
+                    <input type="checkbox" formControlName="linked" (change)="onSetDisabled(i)"> Агуулгатай холбох
+                </label>
+            </div>
+            <div class="control">
+                <input class="input is-small" type="text" placeholder="Менюний холбоос" formControlName="link">
+            </div>
+
+            <div class="control is-expanded">
+                <div class="select is-small">
+                    <select formControlName="contents" (change)="onChangeContents(i)">
+                        <option [ngValue]="null" disabled>Choose your profile</option>
+                        <option *ngFor="let content of contents" [ngValue]="content">{{ content.name }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="move-up-down">
+                <span class="icon">
+                    <fa-icon [icon]="faArrowsAlt"></fa-icon>
+                </span>
+            </div>
+
+            <div class="field has-addons">
+                <div class="control">
+                    <button type="button" class="button is-small" (click)="onMoveLeft(i)">
+                        <span class="icon is-small">
+                            <fa-icon [icon]="faChevronLeft"></fa-icon>
+                        </span>
+                    </button>
+                </div>
+                <div class="control">
+                    <button type="button" class="button is-small" (click)="onMoveRight(i)">
+                        <span class="icon is-small">
+                            <fa-icon [icon]="faChevronRight"></fa-icon>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="is-pulled-right">
+                <a class="delete" (click)="onDeleteNavitem(i)"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-grouped is-grouped-right">
+        <p class="control">
+            <button type="button" class="button is-info" (click)="onAddNavitem()">Дэд меню нэмэх</button>
+        </p>
+        <p class="control">
+            <button type="button" class="button is-primary" [disabled]="!navbarForm.valid"
+                (click)="onSubmit()">Хадгалах</button>
+        </p>
+        <p class="control">
+            <button type="button" class="button is-light" (click)="onCancel()">Болих</button>
+        </p>
+        <p class="control">
+            <button type="button" class="button is-danger" (click)="onDelete()">Устгах</button>
+        </p>
+    </div>
+</form>

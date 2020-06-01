@@ -1,0 +1,32 @@
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container is-fluid">
+      <h1 class="title">
+        Navbar-1212 (Demo App for 1212.mn)
+      </h1>
+      <h2 class="subtitle">
+        Spring Boot 2.3.0 + MSSQL 2019 + Angular 9.1.9 + Docker 2.3
+      </h2>
+    </div>
+  </div>
+</section>
+
+<div class="container is-fluid">
+  <div class="tabs is-medium">
+    <ul>
+      <li routerLinkActive="is-active"><a routerLink="/home"><span class="icon"><fa-icon [icon]="faHome"></fa-icon></span>Эхлэл</a></li>
+      <li routerLinkActive="is-active"><a routerLink="/navbars"><span class="icon"><fa-icon [icon]="faBars"></fa-icon></span>Меню</a></li>
+      <li routerLinkActive="is-active"><a routerLink="/contents"><span class="icon"><fa-icon [icon]="faList"></fa-icon></span>Агуулга</a></li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Navbar-1212</strong> by <a target="_blank" href="https://github.com/tsendee0409/navbar-1212">Tsend-Ayush.Sh</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+    </p>
+  </div>
+</footer>

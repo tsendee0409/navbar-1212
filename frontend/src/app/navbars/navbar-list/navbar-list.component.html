@@ -1,0 +1,12 @@
+<aside class="menu">
+    <p class="menu-label">Менюний жагсаалт</p>
+    <ul class="menu-list">
+        <li *ngFor="let navbar of navbars">
+            <a [routerLink]="[navbar.id]" routerLinkActive="is-active">{{ navbar.name }}</a>
+        </li>
+    </ul>
+</aside>
+
+<hr>
+
+<button class="button is-primary" (click)="onNewNavbar()">Шинэ</button>

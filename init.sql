@@ -6,7 +6,7 @@ GO
 
 create table contents
 (
-    id bigint not null,
+    id bigint identity not null,
     content_text varchar(8000),
     created_at datetime2,
     name varchar(255),
@@ -18,7 +18,7 @@ GO
 
 create table navbars
 (
-    id bigint not null,
+    id bigint identity not null,
     name varchar(255),
     primary key (id)
 )
@@ -26,7 +26,7 @@ GO
 
 create table navitems
 (
-    id bigint not null,
+    id bigint identity not null,
     link varchar(255),
     linked bit not null,
     name varchar(255),
@@ -45,24 +45,25 @@ alter table navitems
 GO
 
 INSERT INTO navbars
-    (id, name)
+    (name)
 VALUES
-    (1, 'Үндсэн меню'),
-    (2, 'Туслах меню')
+    ('Үндсэн меню'),
+    ('Туслах меню')
 GO
 
 INSERT INTO navitems
-    (id, link, linked, name, parent, published, sort, navbar_id)
+    (link, linked, name, parent, published, sort, navbar_id)
 VALUES
-    (3, '#', 0, 'Статистик', 0, 1, 0, 1),
-    (4, '#', 0, 'Файлын сан', 0, 1, 1, 1),
+    ('#', 0, 'Статистик', 0, 1, 0, 1),
+    ('#', 0, 'Файлын сан', 0, 1, 1, 1),
 
-    (5, '#', 0, 'Бидний тухай', 0, 1, 0, 2),
-    (6, '#', 0, 'Холбоо барих', 0, 1, 1, 2)
+    ('#', 0, 'Бидний тухай', 0, 1, 0, 2),
+    ('#', 0, 'Холбоо барих', 0, 1, 1, 2)
 GO
 
 INSERT INTO contents
-    (id, content_text, created_at, name, published, updated_at)
+    (content_text, created_at, name, published, updated_at)
 VALUES
-    (7, 'Content text here!', GETDATE(), 'Title here', 1, GETDATE())
+    ('Content text here!', GETDATE(), 'Title here 1', 1, GETDATE()),
+    ('Content text here!', GETDATE(), 'Title here 2', 1, GETDATE())
 GO

@@ -2,6 +2,7 @@ package mn.navbar.backend.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "navitems")
 public class Navitem {
 
-	private @Id @GeneratedValue Long id;
+	private @Id @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
 	private String name;
 

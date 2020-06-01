@@ -2,6 +2,8 @@ package mn.navbar.backend.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import mn.navbar.backend.model.Navbar;
 import mn.navbar.backend.repository.NavbarRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class NavbarController {
 
 	private final NavbarRepository navbarRepo;
@@ -27,7 +30,7 @@ public class NavbarController {
 
 	@GetMapping("/navbars")
 	List<Navbar> all() {
-		return this.navbarRepo.findAll();
+		return this.navbarRepo.findAll(Sort.by("id").ascending());
 	}
 
 	@PostMapping("/navbars")

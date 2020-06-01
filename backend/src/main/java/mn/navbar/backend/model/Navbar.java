@@ -5,19 +5,22 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "navbars")
 public class Navbar {
 
-	private @Id @GeneratedValue Long id;
+	private @Id @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
 	private String name;
 
 	@OneToMany(mappedBy = "navbar", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OrderBy("sort ASC")
 	private Set<Navitem> navitems;
 
 	public Navbar() {

@@ -1,0 +1,18 @@
+<div *ngIf="content.published; else notPublished">
+    <h2 class="title">{{ content.name }}</h2>
+
+    <h6 class="title is-6">
+        <span class="icon">
+            <fa-icon [icon]="faCalendar"></fa-icon>
+        </span> Сүүлд шинэчилсэн: {{ content.updatedAt.toString().substring(0, 10) }}
+    </h6>
+
+    <div class="content-text" [innerHTML]="content.contentText"></div>
+</div>
+<ng-template #notPublished>
+    <article class="message is-danger">
+        <div class="message-body">
+            Агуулгын үзэх эрхийг хаасан байна. Удирдлагын хэсгээс төлөвийг идэвхжүүлнэ үү.
+        </div>
+      </article>
+</ng-template>

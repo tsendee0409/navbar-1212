@@ -1,0 +1,72 @@
+<h3 class="title is-4" *ngIf="editMode">
+    <span class="icon">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </span>
+    Агуулга засах
+</h3>
+
+<h3 class="title is-4" *ngIf="!editMode">
+    <span class="icon">
+        <fa-icon [icon]="faPlus"></fa-icon>
+    </span>
+    Агуулга меню
+</h3>
+
+<form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+
+    <input class="input" type="hidden" formControlName="id">
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Гарчиг</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-rounded" type="text" placeholder="Агуулгын гарчиг" formControlName="name">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">Төлөв</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox"><input type="checkbox" formControlName="published"> Идэвхтэй эсэх?</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Текст</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <editor formControlName="contentText" apiKey="myf44qynofvyrwszg1kg73i8ttcbq1d3sv50tnssbf46gmwv" cloudChannel="5"
+                        [disabled]="false"id="contentText" [init]="{height: 500, plugins: ['advlist', 'lists', 'autolink', 'table', 'link', 'code', 'image', 'media']}" initialValue="" [inline]="false" plugins="" tagName="div"
+                        toolbar=""></editor>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-grouped is-grouped-right">
+        <p class="control">
+            <button type="button" class="button is-primary" [disabled]="!contentForm.valid"
+                (click)="onSubmit()">Хадгалах</button>
+        </p>
+        <p class="control">
+            <button type="button" class="button is-light" (click)="onCancel()">Болих</button>
+        </p>
+        <p class="control">
+            <button type="button" class="button is-danger" (click)="onDelete()">Устгах</button>
+        </p>
+    </div>
+</form>

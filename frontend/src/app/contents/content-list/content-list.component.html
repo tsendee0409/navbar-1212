@@ -1,0 +1,15 @@
+<aside class="menu">
+    <p class="menu-label">Агуулгын жагсаалт</p>
+    <ul class="menu-list">
+        <li *ngFor="let content of contents">
+            <a [routerLink]="[content.id]" routerLinkActive="is-active">
+                {{ content.name }}
+                <div class="is-size-7" *ngIf="content.updatedAt"><span class="icon"><fa-icon [icon]="faCalendar"></fa-icon></span>{{ content.updatedAt.toString().substring(0, 10) }}</div>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<hr>
+
+<button class="button is-primary" (click)="onNewContent()">Шинэ</button>

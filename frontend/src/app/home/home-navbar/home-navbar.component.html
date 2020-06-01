@@ -1,0 +1,74 @@
+<div class="container">
+    <div *ngFor="let navbar of navbars; let i = index;">
+
+        <nav class="navbar" role="navigation" aria-label="main navigation" [ngClass]="getClass(i)">
+            <div class="navbar-brand">
+                <a class="navbar-item has-text-weight-bold is-capitalized" href="/">
+                    <span class="icon">
+                        <fa-icon [icon]="faBars"></fa-icon>
+                    </span>
+                    {{ navbar.name }}
+                </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <ng-container *ngFor="let navitem of navbar.navitems">
+
+                        <ng-container *ngIf="0 === navitem.parent && navitem.published"
+                            [ngSwitch]="childrens[navitem.id].length">
+
+                            <ng-template [ngSwitchCase]="0">
+                                <a (click)="onLinkClicked(navitem)" class="navbar-item">{{ navitem.name }}</a>
+                            </ng-template>
+
+                            <ng-template [ngSwitchDefault]>
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <a (click)="onLinkClicked(navitem)" class="navbar-link">{{ navitem.name }}</a>
+
+                                    <div class="navbar-dropdown">
+                                        <ng-container *ngFor="let navi of childrens[navitem.id]; let j = index;"
+                                            [ngSwitch]="childrens[navi.id].length">
+
+                                            <ng-template [ngSwitchCase]="0">
+                                                <a (click)="onLinkClicked(navi)" class="navbar-item">{{ navi.name }}</a>
+                                            </ng-template>
+
+                                            <ng-template [ngSwitchDefault]>
+                                                <hr *ngIf="0 < j" class="navbar-divider">
+                                                <a (click)="onLinkClicked(navi)"
+                                                    class="navbar-item has-text-weight-bold is-uppercase">{{ navi.name }}</a>
+
+                                                <a class="navbar-item" *ngFor="let n of childrens[navi.id]"
+                                                    (click)="onLinkClicked(n)">{{ n.name }}</a>
+                                            </ng-template>
+
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                            </ng-template>
+                        </ng-container>
+
+                    </ng-container>
+                </div>
+            </div>
+        </nav>
+
+
+        <section class="section has-background-light">
+            <div class="container">
+                <h1 class="title">Динамик меню</h1>
+                <h2 class="subtitle">Удирдлагын хэсгээс менюний мэдээллийг өөрчлөнө үү.</h2>
+            </div>
+        </section>
+
+
+    </div>
+</div>
